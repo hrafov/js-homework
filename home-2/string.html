@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Capitalize</title>
+</head>
+<body>
+<p>
+  <script>
+  // 1. Написати функцію, скорочує строку і додає три крапки  
+  function truncate(str, maxlength) {
+	  return str.substring(0,maxlength) + '...';
+  }
+  // truncate("рудщ ві віав",3) = "руд..."
+  // 2. Знайти кількість букв "а" в речені "Назва Львів дана місту на честь князя Лева Даниловича, сина засновника Львова Данила Галицького." використовуючи indexOf  
+  function sumOfA(){
+	  var rech = "Назва Львів дана місту на честь князя Лева Даниловича, сина засновника Львова Данила Галицького.";
+	  var sumOfA = 0;
+	  for(var i=0; i < rech.length; i++){
+		  if( rech[i] == 'а') sumOfA++;
+	  }
+	  return sumOfA;
+  }
+  // 3. Написати функцію, яка буде фільтрувати рядок і видиляти слова "xxxx" i "polityka"  
+  function filter(text){
+	  text = text.replace(/xxxx/g, '');
+	  return text.replace(/polityka/g, '');	  
+  }
+  // 4. Профільтрувати строку "іва 24 уц ац34434ауку" і виветси тільки цифри  
+  function cifersOnly(text){
+	  var newtext = '';
+	  for (var i=0; i < text.length; i++ ){
+		  if( text.charAt(i) == '0' || text.charAt(i) == '1' || text.charAt(i) == '2' || text.charAt(i) == '3' || text.charAt(i) == '4' ||
+			  text.charAt(i) == '5' || text.charAt(i) == '6' || text.charAt(i) == '7' || text.charAt(i) == '8' || text.charAt(i) == '9'  ){
+			  newtext += text.charAt(i);   
+		  }
+	  }
+	  return newtext;
+  }
+  </script>
+  </p>
+</body>
+</html>
