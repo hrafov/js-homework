@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>JS Bin</title>
+<script>
+var storedLinks = [];
+var listCount = 7;  //link list count
+//renderBookmarkList(); in body onload = ...
+	function addBookmark() {
+		var title = document.getElementById('title').value;		
+		var url = document.getElementById('url').value;		
+		if (title == '') {
+			alert('Empty Title');
+		} else {
+			if (url == '') {
+				alert('Empty Url');
+			} else				
+			if (validateLink(url)) {
+				//alert('Good Title & Url');															
+				var element = document.getElementById('mydiv');
+				var link = document.createElement('a');
+				var br = document.createElement('br');				
+				link.href = 'http://' + url;
+				link.innerHTML = title;				
+				element.appendChild(br);
+				element.appendChild(link);				
+				//adding to list				
+				storedLinks[storedLinks.length] = url;				
+				localStorage.storedLinks = JSON.stringify(storedLinks);
+				//saving to localeStorage
+			} else {
+				alert('Link Is Not Valid');
+			}
+		}		
+	}	
+	// 2. Змінити відображеня кількості
+	function renderListCount() {
+       listCount = prompt("Link List Count from LocalStorage?", 7); 
+	}
+	// 3. Валідувати дані, щоб не можна було
+	// зберегти пусті поля і неправильну адресу
+	// return true/false	 
+	function validateLink(link) 
+	{
+		regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+		if (regexp.test(link)) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
+	function renderBookmarkList() {		
+		renderListCount();		
+		storedLinks = localStorage.storedLinks ? JSON.parse(localStorage.storedLinks):[];		
+	    if( storedLinks.length == 0 ){
+			alert('U have not stored links');
+		}
+		else{		
+			for (var i = 0; i < listCount; i++ ){				
+				if( storedLinks[i] ==  null ) continue; 
+				var element = document.getElementById('mydiv');
+				var link = document.createElement('a');
+				var br = document.createElement('br');				
+				link.href = 'http://' + storedLinks[i];				
+				link.innerHTML = 'go to Link';				
+				element.appendChild(br);				
+				element.appendChild(link);
+			}				
+		}		
+	    //Коли відкриваєте сторінку первірити чи є
+	    // дані в localeStorage, якщо так відобразити їх,
+	    // якщо ні вивести повідомлення, що у вас немає збережених 
+	    // закладок
+	} 
+	function clearAllStorage() {
+		localStorage.clear();
+		location.reload(); 
+	}
+</script>
+</head>
+<body onload="renderBookmarkList()">
+	<h2>Add new bookmarks</h2>
+	<!-- Форма для зберігання закладки -->
+	Title
+	<input id="title" name="title" />
+	<br> Url
+	<input id="url" name="url" />
+	<br>
+	<button onclick="addBookmark()">Save</button>
+	<br>
+	<button onclick="clearAllStorage()">Clear All Storage</button>
+	<br>
+	<!-- Список збережених закладок -->
+	<h2>Your bookmarks</h2>
+	<div id="mydiv" class="bookmark-list"></div>
+</body>
+</html>
