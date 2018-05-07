@@ -1,0 +1,32 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JS Homework 2: querySelector, date, timeout</title>
+  <style>
+  .temperature {
+      background-color: red;
+  }
+  </style>
+</head>
+<body>
+<!-- Task 1  -->
+  <h1>Wether in Ukraine</h1>
+  <ul> </ul>
+<script>
+  // Є обєкт за даними 
+  var wetherObj = {
+    Lviv: 12,
+    Kiev: 20,
+    Dnipro: 22,
+    Uzhorod: 19,
+    Gorodok: 14
+  }  
+  const ul = document.querySelector('ul');
+  for (var prop in wetherObj) {
+	  const li = document.createElement('li');
+	  li.innerHTML = prop + " - " + "<span class=\"temperature\">" + wetherObj[prop] + "</span>";
+	  ul.appendChild(li);
+  }  
+</script>
+</body>
+</html>
