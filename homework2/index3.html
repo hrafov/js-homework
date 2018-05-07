@@ -6,7 +6,8 @@
 <title>JS Bin</title>
 <script>
 var storedLinks = [];
-var listCount = 7;  //link list count
+var storedTitles = []; //
+var listCount = 5;  //link list count
 //renderBookmarkList(); in body onload = ...
 	function addBookmark() {
 		var title = document.getElementById('title').value;		
@@ -27,8 +28,10 @@ var listCount = 7;  //link list count
 				element.appendChild(br);
 				element.appendChild(link);				
 				//adding to list				
-				storedLinks[storedLinks.length] = url;				
+				storedLinks[storedLinks.length] = url;
+				storedTitles[storedTitles.length] = title; //
 				localStorage.storedLinks = JSON.stringify(storedLinks);
+				localStorage.storedTitles = JSON.stringify(storedTitles); //
 				//saving to localeStorage
 			} else {
 				alert('Link Is Not Valid');
@@ -37,7 +40,7 @@ var listCount = 7;  //link list count
 	}	
 	// 2. Змінити відображеня кількості
 	function renderListCount() {
-       listCount = prompt("Link List Count from LocalStorage?", 7); 
+       listCount = prompt("Link List Count from LocalStorage?", 5); 
 	}
 	// 3. Валідувати дані, щоб не можна було
 	// зберегти пусті поля і неправильну адресу
@@ -53,7 +56,8 @@ var listCount = 7;  //link list count
 	}	
 	function renderBookmarkList() {		
 		renderListCount();		
-		storedLinks = localStorage.storedLinks ? JSON.parse(localStorage.storedLinks):[];		
+		storedLinks = localStorage.storedLinks ? JSON.parse(localStorage.storedLinks):[];
+		storedTitles = localStorage.storedTitles ? JSON.parse(localStorage.storedTitles):[]; //
 	    if( storedLinks.length == 0 ){
 			alert('U have not stored links');
 		}
@@ -64,7 +68,7 @@ var listCount = 7;  //link list count
 				var link = document.createElement('a');
 				var br = document.createElement('br');				
 				link.href = 'http://' + storedLinks[i];				
-				link.innerHTML = 'go to Link';				
+				link.innerHTML = storedTitles[i];	//			
 				element.appendChild(br);				
 				element.appendChild(link);
 			}				
