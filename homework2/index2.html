@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JS Homework 2: querySelector, date, timeout</title>
+  <style>
+  .time {
+    background: #7FFFD4; 
+  }
+  </style>  
+</head>
+<body>
+<!-- Task 2  -->
+  <h1>World time</h1>  
+  <p>If You will have hours with minus sign - this is previous date :)</p>
+  <ul></ul>
+  <script>
+var obj = {
+		'London': 0,
+	    'Kiev': 3,
+	    'Warshawa': 1,
+	    'Los Angeles': -7,
+	    'New York': -6
+	  }
+var currentdate = new Date(); 
+const ul = document.querySelector('ul');
+for (var prop in obj) {	
+	  const li = document.createElement('li');	  
+	  var datetime = currentdate.getDate() + "."
+      + (currentdate.getMonth()+1) + "." 
+      + currentdate.getFullYear() + " - "  
+      + (currentdate.getHours() + obj[prop] - 3) + ":"  
+      + currentdate.getMinutes();      
+	  li.innerHTML = prop + " - " + "<span class=\"time\">" + datetime + "</span>";
+	  ul.appendChild(li);
+}
+  // вивести для кожного міста час і дату
+  // формат 24.09.2017 - 15:40
+</script>
+</body>
+</html>
