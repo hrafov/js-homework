@@ -1,0 +1,40 @@
+body {
+    background-color:  	#7FFFD4;
+}
+
+.main {
+    padding: 90px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+
+}
+
+.description {
+    text-align: center;
+    color: black;
+}
+
+h1 {
+    padding-bottom: 60px;
+    color: black;
+    margin: auto;
+}
+
+h2 {
+    color: black;
+    text-align: center;
+}
+
+.cities {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.city {
+    margin: 1%;
+    margin-bottom: auto;    
+    flex-grow: 1;
+    flex-basis: 25%;
+}
